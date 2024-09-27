@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences sp;
 
     Dialog d;
-    EditText etUserName;
-    EditText etPass;
+    EditText etLName, etFName;
     Button btnCustomLogin;
 
     Button btnLogin;
@@ -37,7 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String strFname = sp.getString("fname",null);
         String strLname = sp.getString("lname",null);
 
-        if(strLname!=null && strFname !=null)
+        updateWelcomMsg(strLname, strFname);
+    }
+
+    private void updateWelcomMsg(String strLname, String strFname) {
+        if(strLname !=null && strFname !=null)
         {
             tvDisplay.setText("Welcome " + strFname + " " + strLname);
         }
@@ -49,18 +52,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         d.setContentView(R.layout.custom_layout);
         d.setTitle("Login");
         d.setCancelable(true);
-        etUserName= d.findViewById(R.id.etUserName);
-        etPass= (EditText)d.findViewById(R.id.etPassword);
+        etLName= d.findViewById(R.id.etLName);
+        etFName= (EditText)d.findViewById(R.id.etFName);
         btnCustomLogin=(Button)d.findViewById(R.id.btnDialogLogin);
         btnCustomLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(btnCustomLogin==v)
                 {
+                    String lName = etLName.getText().toString();
+                    String fName = etFName.getText().toString();
                     SharedPreferences.Editor editor=sp.edit();
-                    editor.putString("fname",etUserName.getText().toString());
-                    editor.putString("lname",etPass.getText().toString());
+                    editor.putString("fname",fName);
+                    editor.putString("lname",lName);
                     editor.commit();
+                    updateWelcomMsg(fName,lName);
                     d.dismiss();
                 }
             }

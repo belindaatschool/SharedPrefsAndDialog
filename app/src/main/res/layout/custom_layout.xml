@@ -11,16 +11,16 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text=""
-        android:hint="username"
-        android:id="@+id/etUserName" />
+        android:hint="first name"
+        android:id="@+id/etFName" />
 
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text=""
-        android:hint="password"
+        android:hint="last name"
         android:inputType="textPassword"
-        android:id="@+id/etPassword" />
+        android:id="@+id/etLName" />
 
     <Button
         android:layout_width="200dp"
